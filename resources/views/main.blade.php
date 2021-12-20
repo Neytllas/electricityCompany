@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title')Авторизация@endsection
+@section('title')Главная страница@endsection
 
 @section('content')
 @include('includes.header')
 @include('includes.messages')
-<div class="container">
-      
+
+      <div class="container">
 <!-- TODO change img class -->
       <div class="wrapper">
         <div class="ellement">
@@ -124,7 +124,7 @@
 
     <!-- TODO fix that block -->
     <div class="container table">
-    <div class="d-table">
+    <div>
       <img class="" src="/images/photo.svg" alt="">
      <span class="text-table">Загрузить показания с фото</span> 
     </div>
@@ -135,14 +135,51 @@
 
       <!-- TODO fix text -->
       <div class="table-2">
-        <span class="text-table-2">Введите показания с прибора</span>
+        <div class="input-group">
+          <input
+            type="text"
+            name=""
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            placeholder="Введите показания с прибора"
+          />
+        </div>
     </div>
 
     <div class="btn-insert">
       <button type="button" class="btn btn-danger">Передать показание</button>
     </div>
-    
     </div>
-  </body>
-  @include('includes.footer')
-  @endsection
+
+    <!-- Footer -->
+<footer class="text-center text-white" style="background-color:#f7f7f7;">
+  <!-- Grid container -->
+  <div class="container p-4">
+
+     <!-- Section: Text -->
+     <section class="mb-4">
+      <p>
+        <h3>TEXT</h3>
+  TEXT
+      </p>
+    </section>
+    <!-- Section: Text -->
+
+
+
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: #043D7D;">
+    © 2021 Copyright:
+    <a class="text-white" href="#">TEXT</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+@include('includes.footer')
+@endsection

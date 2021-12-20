@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
-@section('title')История платежей@endsection
+@section('title')История операций@endsection
 
 @section('content')
 @include('includes.header')
+@include('includes.messages')
+
 <div class="container">
           <div class="container container-indication">
             <div class="main-text-history">
@@ -28,21 +30,21 @@
                 25 октября 2021
               </div>
 
-          <div class="piece-of-history">
-              <div class="history-icon"></div>
-              <p class="history-text">
-                <span>Электроэнергия</span>
-                По телефону
-              </p>
 
-              <div>
-                <p class="history-text-2">
-                Показания: 4752 квТ.ч
-                Расход: 82 кВт.ч
-              </p>
-          </div>     
+    <div class="container">
+      <div class="row ">
+        <div class="col history-icon"></div>
+        <div class="col-2 history-text">
+        <span class="piece-of-history">Электроэнергия</span>   
+          По телефону
+        </div>
+        <div class="col-2 history-text-2">
+          Показания: <strong>4752 квТ.ч</strong> 
+          <br>
+          Расход: <strong>82 кВт.ч</strong> 
+        </div>
+      </div>
     </div>
-    @include('includes.footer')
-@endsection
 
-    
+@include('includes.footer')
+@endsection

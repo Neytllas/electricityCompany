@@ -31,6 +31,20 @@
     float: none;
 }
 
+.nav-link
+{
+    color: var(--black);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    margin-top: 5px;
+}
+
+.nav-item :hover
+{
+    text-decoration: underline;
+}
+
 .form-control
 {
     font-size: normal;
@@ -216,6 +230,9 @@ p
     width: auto;
     height: 200px;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .text-table
@@ -223,12 +240,6 @@ p
     color: var(--dark_grey);
     font-style: normal;
     font-weight: 600;
-}
-
-.d-table
-{
-    display: flex;
-    justify-content: center;
 }
 
 .h4-text
@@ -242,8 +253,10 @@ p
 {
     border: 1px solid #E0E0E0;
     border-radius: 8px;
-    width: 500px;
     height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .text-table-2
@@ -251,9 +264,7 @@ p
     color: var(--dark_grey);
     font-style: normal;
     font-weight: 600;
-    display: block;
     text-align: center;
-    padding-top: 10px;
 }
 
 .btn-insert
@@ -329,7 +340,7 @@ p
     margin-right: 15px;
 }
 
-.piece-of-history span
+.piece-of-history
 {
     display: block;
     font-style: normal;
