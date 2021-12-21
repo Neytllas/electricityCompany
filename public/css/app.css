@@ -48,7 +48,6 @@
 .form-control
 {
     font-size: normal;
-    color: var(--light_gray);
     border-radius: 8px;
 }
 
@@ -372,7 +371,6 @@ p
 
 .fields
 {
-    width: 400px;
     height: 40px;
     margin-bottom: 50px;
 }

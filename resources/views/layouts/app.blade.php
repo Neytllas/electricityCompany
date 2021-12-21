@@ -18,27 +18,10 @@
     <link rel="stylesheet" href="/css/app.css" />
   </head>
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light ">
-        <div class="container"> 
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="navbar-brand d-flex " href="#"
-                  ><img src="/images/logo.svg" alt="logo"
-                /></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Главная</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Личный кабинет</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">История</a>
-            </li>
-          </ul>
-        </div>
-  </nav>
+  @include('includes.header')
+  @include('includes.messages')
 
   @yield('content')
+
   </body>
 </html>

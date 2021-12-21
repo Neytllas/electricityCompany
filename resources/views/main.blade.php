@@ -3,8 +3,6 @@
 @section('title')Главная страница@endsection
 
 @section('content')
-@include('includes.header')
-@include('includes.messages')
 
       <div class="container">
 <!-- TODO change img class -->
@@ -31,60 +29,6 @@
             </div>
           </div>
 
-          <div class="col-auto d-flex align-items-center flex-column border">
-            <div><img src="/images/appliance.svg" alt="" /></div>
-            <div class="text-card">
-              Меркурий
-              <p>201.7-1</p>
-              <p>№: 037369914</p>
-            </div>
-          </div>
-
-          <div class="col-auto d-flex align-items-center flex-column border">
-            <div><img src="/images/appliance.svg" alt="" /></div>
-            <div class="text-card">
-              Меркурий
-              <p>201.7-1</p>
-              <p>№: 037369914</p>
-            </div>
-          </div>
-
-          <div class="col-auto d-flex align-items-center flex-column border">
-            <div><img src="/images/appliance.svg" alt="" /></div>
-            <div class="text-card">
-              Меркурий
-              <p>201.7-1</p>
-              <p>№: 037369914</p>
-            </div>
-          </div>
-
-          <div class="col-auto d-flex align-items-center flex-column border">
-            <div><img src="/images/appliance.svg" alt="" /></div>
-            <div class="text-card">
-              Меркурий
-              <p>201.7-1</p>
-              <p>№: 037369914</p>
-            </div>
-          </div>
-
-          <div class="col-auto d-flex align-items-center flex-column border">
-            <div><img src="/images/appliance.svg" alt="" /></div>
-            <div class="text-card">
-              Меркурий
-              <p>201.7-1</p>
-              <p>№: 037369914</p>
-            </div>
-          </div>
-
-          <div class="col-auto d-flex align-items-center flex-column border">
-            <div><img src="/images/appliance.svg" alt="" /></div>
-            <div class="text-card">
-              Меркурий
-              <p>201.7-1</p>
-              <p>№: 037369914</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -152,34 +96,4 @@
     </div>
     </div>
 
-    <!-- Footer -->
-<footer class="text-center text-white" style="background-color:#f7f7f7;">
-  <!-- Grid container -->
-  <div class="container p-4">
-
-     <!-- Section: Text -->
-     <section class="mb-4">
-      <p>
-        <h3>TEXT</h3>
-  TEXT
-      </p>
-    </section>
-    <!-- Section: Text -->
-
-
-
-  </div>
-  <!-- Grid container -->
-
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: #043D7D;">
-    © 2021 Copyright:
-    <a class="text-white" href="#">TEXT</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
-
-@include('includes.footer')
 @endsection
