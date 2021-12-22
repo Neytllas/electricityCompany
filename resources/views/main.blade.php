@@ -5,7 +5,6 @@
 @section('content')
 
     <div class="container">
-        <!-- TODO change img class -->
         <div class="wrapper">
             <div class="ellement">
                 <img src="/images/lightning.svg" class="img-ell" alt="" />
@@ -75,7 +74,6 @@
         <h4>Текущий расход: <span style="font-weight: bold;">{{ $last_indication->indication }} (кВт.ч) </span> </h4>
     </div>
 
-    <!-- TODO fix that block -->
     <div class="container table">
         <div>
             <img class="" src="/images/photo.svg" alt="">
