@@ -6,6 +6,7 @@ use App\Http\Requests\ClientRequest;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\History;
 use App\Models\Meter;
 
@@ -13,9 +14,40 @@ use App\Models\Meter;
 class ClientController extends Controller
 {
 
+    function show(Request $request)
+    {
+        return view("login", ["title" => "Авторизация"]);
+    }
+
+    function login(Request $request) // Авторизация
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) 
+        {
+            $request->session()->regenerate();
+
+            return redirect("/");
+        }
+    }
+
+    function logout(Request $request) // Выход
+    {
+        Auth::logout();
+
+        $request-> session()->invalidate();
+
+        $request-> session()->regenerateToken();
+
+        return redirect("/");
+    }
+
     function __construct()
     {
-        $this->middleware("auth");
+        $this->middleware("login");
     }
 
     public function submit(ClientRequest $req)
@@ -60,13 +92,5 @@ class ClientController extends Controller
     public function edit_form()
     {
         return view('profile');
-    }
-
-    public function checkLogin()
-    {
-    }
-
-    public function  showPassword()
-    {
     }
 }
