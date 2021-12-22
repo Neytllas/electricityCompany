@@ -9,45 +9,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\History;
 use App\Models\Meter;
+use Carbon\Carbon;
 
 
 class ClientController extends Controller
 {
-
-    function show(Request $request)
-    {
-        return view("login", ["title" => "Авторизация"]);
-    }
-
-    function login(Request $request) // Авторизация
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) 
-        {
-            $request->session()->regenerate();
-
-            return redirect("/");
-        }
-    }
-
-    function logout(Request $request) // Выход
-    {
-        Auth::logout();
-
-        $request-> session()->invalidate();
-
-        $request-> session()->regenerateToken();
-
-        return redirect("/");
-    }
-
     function __construct()
     {
-        $this->middleware("login");
+        $this->middleware("auth");
     }
 
     public function submit(ClientRequest $req)
@@ -70,22 +39,45 @@ class ClientController extends Controller
         return redirect()->route('message')->with('success', 'Показания успешно отправлены!');
     }
 
+    public function add_indication(Request $request)
+    {
+        $value =$request->input("value");
+
+        $history = new History();
+        $history->date = Carbon::now();
+        $history->send_type = "По компьютеру";
+        $history->indication = $value;
+        $history->title = "Электронергия";
+        $history->client_id = session()->get("client");
+
+        $history->save();
+
+        return redirect("/history");
+    }
+
 
     public function index()
     {
         $items = Meter::all();
+        $last_indication = History::orderBy("date", "desc")->orderBy("id", "desc")->first();
 
         return view('main', [
-            "items" => $items
+            "items" => $items,
+            "last_indication" => $last_indication
         ]);
     }
 
     public function history()
     {
-        $items = History::all();
+        $items = History::orderBy("date")->get();
+        $last_value = 0;
+        foreach($items as $item) {
+            $item->delta = $item->indication - $last_value;
+            $last_value = $item->indication;
+        }
 
         return view('history', [
-            "items" => $items
+            "items" => $items->reverse()
         ]);
     }
 

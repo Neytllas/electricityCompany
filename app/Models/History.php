@@ -10,4 +10,5 @@ class History extends Model
     use HasFactory;
 
     protected $table = "history";
+    public $timestamps = false;
 }

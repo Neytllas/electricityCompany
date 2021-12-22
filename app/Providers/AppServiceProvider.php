@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Client;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -26,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $client = Client::query()->where("login", "111111")->first();
+        $client = Client::query()->where("user_id", 2)->first();
         View::share('client', $client);
     }
 }

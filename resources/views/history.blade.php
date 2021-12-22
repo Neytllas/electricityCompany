@@ -44,7 +44,7 @@
                     <div class="col-2 history-text-2">
                         Показания: <strong>{{ $item->indication }} квТ.ч</strong>
                         <br>
-                        Расход: <strong>82 кВт.ч</strong>
+                        Расход: <strong>{{ $item->delta }} кВт.ч</strong>
                     </div>
                 </div>
             </div>

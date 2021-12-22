@@ -16,7 +16,7 @@
 
             <div class="iput-auth row">     {{--  Поле ввода логина --}}
                 <div class="input-group mb-3">
-                    <input type="text" name="Email" class="form-control" placeholder="Введите email " aria-label="Введите email "
+                    <input type="text" name="email" class="form-control" placeholder="Введите email " aria-label="Введите email "
                         aria-describedby="basic-addon2">
                 </div>
 
@@ -25,13 +25,13 @@
                         aria-describedby="basic-addon2">
                 </div>
             </div>
-
+            <div class="button-auth">
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </div>
         </form>
 
 
-        <div class="button-auth">
-            <button type="submit" class="btn btn-primary">Войти</button>
-        </div>
+        
 
         <div class="text-auth">Забыли email или пароль?</div>
 

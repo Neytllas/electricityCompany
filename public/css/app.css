@@ -31,6 +31,15 @@
     float: none;
 }
 
+.navbar-text
+{
+    color: var(--black);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    margin-top: 5px;
+}
+
 .nav-link
 {
     color: var(--black);
