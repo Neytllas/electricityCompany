@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\History;
 use App\Models\Meter;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Session;
 
 class ClientController extends Controller
 {
@@ -61,9 +61,16 @@ class ClientController extends Controller
         $items = Meter::all();
         $last_indication = History::orderBy("date", "desc")->orderBy("id", "desc")->first();
 
+        $results = history ::selectRaw('EXTRACT( YEAR_MONTH FROM date ) as period, SUM(indication) as summed')
+            ->groupByRaw('EXTRACT( YEAR_MONTH FROM date)')
+            ->orderByRaw('1')
+            ->limit(3)
+            ->get();
+
         return view('main', [
             "items" => $items,
-            "last_indication" => $last_indication
+            "last_indication" => $last_indication,
+            "results" => $results
         ]);
     }
 
@@ -75,14 +82,111 @@ class ClientController extends Controller
             $item->delta = $item->indication - $last_value;
             $last_value = $item->indication;
         }
+        
+        $results = history ::selectRaw('EXTRACT( YEAR_MONTH FROM date ) as period, SUM(indication) as summed')
+            ->groupByRaw('EXTRACT( YEAR_MONTH FROM date)')
+            ->orderByRaw('1')
+            ->limit(3)
+            ->get();
 
         return view('history', [
-            "items" => $items->reverse()
+            "items" => $items->reverse(),
+            "results" => $results
         ]);
     }
 
     public function edit_form()
     {
         return view('profile');
+    }
+
+    public function edit_user(Request $request)
+    {
+        $request->validate([
+            'Name' => 'required'
+        ],[
+            'Name.required' => 'Имя обязательно к заполнению'
+        ]);
+        $request->validate([
+            'Surname' => 'required'
+        ],[
+            'Surname.required' => 'Фамилия обязательна к заполнению'
+        ]);
+        $request->validate([
+            'MiddleName' => 'required'
+        ],[
+            'MiddleName.required' => 'Отчество обязательно к заполнению'
+        ]);
+        $request->validate([
+            'PhoneNumber' => 'required'
+        ],[
+            'PhoneNumber.required' => 'Номер телефона обязателен к заполнению'
+        ]);
+        $request->validate([
+            'Email' => 'required'
+        ],[
+            'Email.required' => 'Email обязателен к заполнению'
+        ]);
+        $request->validate([
+            'City' => 'required'
+        ],[
+            'City.required' => 'Город обязателен к заполнению'
+        ]);
+        $request->validate([
+            'Street' => 'required'
+        ],[
+            'Street.required' => 'Улица обязательна к заполнению'
+        ]);
+        $request->validate([
+            'HouseNumber' => 'required'
+        ],[
+            'HouseNumber.required' => 'Номер дома обязателен к заполнению'
+        ]);
+        $request->validate([
+            'Flat' => 'required'
+        ],[
+            'Flat.required' => 'Номер квартиры обязателен к заполнению'
+        ]);
+        $request->validate([
+            'NumberRooms' => 'required'
+        ],[
+            'NumberRooms.required' => 'Количество комнат обязательно к заполнению'
+        ]);
+        $request->validate([
+            'NumberTenats' => 'required'
+        ],[
+            'NumberTenats.required' => 'Количество жильцов обязательно к заполнению'
+        ]);
+        $request->validate([
+            'Login' => 'required'
+        ],[
+            'Login.required' => 'Индивидуальный номер счета обязателен к заполнению'
+        ]);
+
+        $client = Client::query()->where("user_id", 2)->first();
+
+        $client->Surname = $request->input('Surname');
+        $client->Name = $request->input('Name');
+        $client->MiddleName = $request->input('MiddleName');
+        $client->PhoneNumber = $request->input('PhoneNumber');
+        $client->Email = $request->input('Email');
+        $client->City = $request->input('City');
+        $client->Street = $request->input('Street');
+        $client->HouseNumber = $request->input('HouseNumber');
+        $client->Flat = $request->input('Flat');
+        $client->NumberRooms = $request->input('NumberRooms');
+        $client->NumberTenats = $request->input('NumberTenats');
+        $client->Login = $request->input('Login');
+
+        $client -> save();
+
+        return redirect()->back();;
+
+    }
+
+    public function edit_user_admit(Request $request)
+    {
+        Session::flash('admit');
+        return redirect(Session::previousUrl());
     }
 }

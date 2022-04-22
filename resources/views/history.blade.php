@@ -19,9 +19,11 @@
             </div>
 
             <div class="row row-arrow">
-                <div class="col col-arrow"><img src="/images/arrow_green.svg" alt="">2100 кВт.ч</div>
-                <div class="col col-arrow"><img src="/images/arrow_red.svg" alt="">2100 кВт.ч</div>
-                <div class="col col-arrow"><img src="/images/arrow_green.svg" alt="">2100 кВт.ч</div>
+                @foreach ($results as $item)
+                    <div class="col col-arrow">
+                        <div class="col col-arrow"><img src="/images/arrow_green.svg" alt="" />{{ $item->summed }}кВт.ч</div>
+                    </div>
+                @endforeach
             </div>
         </div>
 

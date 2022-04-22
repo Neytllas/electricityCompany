@@ -35,7 +35,7 @@
 
         <div class="text-auth">Забыли email или пароль?</div>
 
-        <div class="text-without-auth">Отправить показания без авторизации</div>
+        <div class="text-without-auth"><a href="{{route('wauth')}}">Отправить показания без авторизации</a></div>
     </div>
 
 @endsection

@@ -19,7 +19,7 @@
             <ul class="nav nav-pills">
                 <li class="nav-item me-4">
                     <div class="navbar-text">
-                        здравстуйте, {{ $client->Name }}
+                        Здравствуйте, {{ $client->Name }}
                     </div>
                 </li>
                 <li class="nav-item">
