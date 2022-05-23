@@ -17,7 +17,7 @@ class HistoryResource extends JsonResource
         return [
             'id' => $this->id,
             'date' => $this->date,
-            'send_type' => $this->isend_type,
+            'send_type' => $this->send_type,
             'indication' => $this->indication,
             'client_id' => $this->client_id,
             'title' => $this->title

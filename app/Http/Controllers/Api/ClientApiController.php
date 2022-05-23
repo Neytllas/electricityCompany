@@ -11,7 +11,7 @@ class ClientApiController extends Controller
 {
     public function send()
     {
-        $client = Client::all();
+        $client =  Client::query()->where("user_id", 2)->first();
         return ClientResource::collection($client);
     }
 }
