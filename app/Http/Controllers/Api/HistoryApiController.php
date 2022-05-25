@@ -11,7 +11,7 @@ class HistoryApiController extends Controller
 {
     public function send()
     {
-        $history = History::query()->where("client_id", 4)->first();
+        $history = History::all();
         return HistoryResource::collection($history);
     }
 }
