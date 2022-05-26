@@ -13,13 +13,13 @@ class HistoryApiController extends Controller
 {
     function __construct()
     {
-        $this->middleware("auth");
+        // $this->middleware("auth");
     }
 
     public function send()
     {
-        $client = Client::firstWhere("user_id",  Auth::id());
-        $items = History::query()->where("client_id", $client->id)->orderBy("date")->get();
+        //client = Client::firstWhere("user_id",  Auth::id());
+        $items = History::query()->where("client_id", 4)->orderBy("date")->get();
         $last_value = 0;
         foreach($items as $item) {
             $item->delta = $item->indication - $last_value;
