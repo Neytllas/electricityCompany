@@ -20,5 +20,7 @@
   <body>
   @include('includes.header')
   @include('includes.messages')
+
+  @yield('content')
   </body>
 </html>

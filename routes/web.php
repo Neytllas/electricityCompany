@@ -5,7 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\HistoryApiController;
 
 Route::get('/', [ClientController::class, "index"])->name('main');
 
@@ -26,3 +26,4 @@ Route::post('/edit_user', [ClientController::class, "edit_user"])->name('edit.us
 
 Route::post('/edit_user_admit', [ClientController::class, "edit_user_admit"])->name('edit.user.admit');
 
+Route::get('/api/history', [HistoryApiController::class, 'send']);

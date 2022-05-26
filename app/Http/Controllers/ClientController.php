@@ -76,7 +76,8 @@ class ClientController extends Controller
 
     public function history()
     {
-        $items = History::orderBy("date")->get();
+        $client = Client::firstWhere("user_id",  Auth::id());
+        $items = History::query()->where("client_id", $client->id)->orderBy("date")->get();
         $last_value = 0;
         foreach($items as $item) {
             $item->delta = $item->indication - $last_value;
@@ -163,7 +164,7 @@ class ClientController extends Controller
             'Login.required' => 'Индивидуальный номер счета обязателен к заполнению'
         ]);
 
-        $client = Client::query()->where("user_id", 2)->first();
+        $client = Client::query()->where("user_id", Auth::id())->first();
 
         $client->Surname = $request->input('Surname');
         $client->Name = $request->input('Name');

@@ -20,7 +20,8 @@ class HistoryResource extends JsonResource
             'send_type' => $this->send_type,
             'indication' => $this->indication,
             'client_id' => $this->client_id,
-            'title' => $this->title
+            'title' => $this->title,
+            'delta' => $this->delta,
         ];
     }
 }
