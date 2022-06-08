@@ -15,6 +15,8 @@ Route::get('/logout', [LoginController::class, "logout"]);
 
 Route::get('/wauth', [AuthController::class, "wauth"])->name('wauth');
 Route::post('/send_indication', [AuthController::class, "send_indication"])->name('send_indication');
+Route::get('/confirmation', [AuthController::class, "confirm_indication_get"])->name('confirm_indication_get');
+Route::post('/confirmation', [AuthController::class, "confirm_indication_post"])->name('confirm_indication_post');
 
 
 Route::get('/history', [ClientController::class, "history"])->name('history');

@@ -41,7 +41,7 @@
                     <div class="col history-icon"></div>
                     <div class="col-2 history-text">
                         <span class="piece-of-history">{{ $item->title }}</span>
-                        {{ $item->send_type }}
+                       @if($item->meter) {{ $item->meter->NameMeter }} @endif
                     </div>
                     <div class="col-2 history-text-2">
                         Показания: <strong>{{ $item->indication }} квТ.ч</strong>

@@ -89,6 +89,11 @@
         <form action="/indication" method="POST">
             @csrf
             <div class="table-2">
+                <select class="form-select me-2"  aria-label="Default select example" name="meter_id">
+                    @foreach ($items as $item)
+                        <option value="{{ $item->id }}">{{ $item->NameMeter }}</option>
+                    @endforeach
+                  </select>
                 <div class="input-group">
                     <input type="text" name="value" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" placeholder="Введите показания с прибора" />
@@ -96,9 +101,10 @@
             </div>
             <div class="btn-insert">
                 <button type="submit" class="btn btn-danger">Передать показание</button>
-            </div>
+               </div> 
+        </form>    
     </div>
-    </form>
+
 
 
 

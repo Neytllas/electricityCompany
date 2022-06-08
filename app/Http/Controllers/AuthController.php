@@ -74,9 +74,53 @@ class AuthController extends Controller
         $history->indication = $request->input("indication");
         $history->title = "Электронергия";
         $history->client_id = $client->id;
-
+        $history->confirmation_code = str_pad(rand(0, pow(10, 4)-1), 4, '0', STR_PAD_LEFT);
+        $history->confirmed = false;
         $history->save();
-
-        return redirect()->back();;
+            
+        $id = $history->id;
+        return redirect()->route("confirm_indication_get", ["history_id"=>$id]);
     }
+
+/**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm_indication_post(Request $request)
+    {
+        $history_id = $request->get("history_id");
+        $confirmation_code =$request->input("confirmation_code");
+
+
+        $item_exists = History::query()
+            ->withoutGlobalScope("confirmed")
+            ->where("id", $history_id)
+            ->where("confirmation_code", $confirmation_code)->exists();
+
+        if ($item_exists) {
+            $history = History::withoutGlobalScope('confirmed')->find($history_id);
+            $history->confirmed = true;
+            $history->save();
+            return  redirect("/login");
+        } else {
+            $history_id = $request->get("$history_id");
+            return view('confirmation', [
+                "history_id" => $history_id
+            ]);
+        }
+        
+    }
+    /** 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm_indication_get(Request $request)
+    {
+        $history_id = $request->get("history_id");
+        
+        return view('confirmation', [
+            "history_id" => $history_id
+        ]);
+    }
+
 }

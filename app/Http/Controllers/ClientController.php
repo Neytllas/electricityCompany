@@ -42,19 +42,21 @@ class ClientController extends Controller
     public function add_indication(Request $request)
     {
         $value =$request->input("value");
+        $meter_id =$request->input("meter_id");
 
         $history = new History();
         $history->date = Carbon::now();
         $history->send_type = "По компьютеру";
         $history->indication = $value;
+        $history->meter_id = $meter_id;
         $history->title = "Электронергия";
         $history->client_id = session()->get("client");
+        $history->confirmed = true;
 
         $history->save();
 
         return redirect("/history");
     }
-
 
     public function index()
     {
@@ -77,7 +79,7 @@ class ClientController extends Controller
     public function history()
     {
         $client = Client::firstWhere("user_id",  Auth::id());
-        $items = History::query()->where("client_id", $client->id)->orderBy("date")->get();
+        $items = History::query()->with("meter")->where("client_id", $client->id)->orderBy("date")->get();
         $last_value = 0;
         foreach($items as $item) {
             $item->delta = $item->indication - $last_value;

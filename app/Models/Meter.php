@@ -10,4 +10,10 @@ class Meter extends Model
     use HasFactory;
 
     protected $table = "meters";
+
+    
+    // public function history()
+    // {
+    //     return $this->hasMany(History::class);
+    // }
 }
