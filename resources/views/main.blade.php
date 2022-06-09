@@ -76,16 +76,9 @@
         <h4>Текущий расход: <span style="font-weight: bold;">{{ $last_indication->indication }} (кВт.ч) </span> </h4>
     </div>
 
-    <div class="container table">
-        <div>
-            <img class="" src="/images/photo.svg" alt="">
-            <span class="text-table">Загрузить показания с фото</span>
-        </div>
-    </div>
+
 
     <div class="container container-table-2">
-        <h4 class="h4-text">или</h4>
-
         <form action="/indication" method="POST">
             @csrf
             <div class="table-2">
@@ -99,14 +92,11 @@
                         aria-describedby="inputGroup-sizing-default" placeholder="Введите показания с прибора" />
                 </div>
             </div>
-            <div class="btn-insert">
-                <button type="submit" class="btn btn-danger">Передать показание</button>
-               </div> 
         </form>    
     </div>
 
-
-
-
+    <div class="btn-insert">
+        <button type="submit" class="btn btn-danger">Передать показание</button>
+    </div> 
 
 @endsection
